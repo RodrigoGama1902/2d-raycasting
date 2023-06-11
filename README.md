@@ -2,6 +2,8 @@
 
 This project is a simple C++ application that utilizes the SFML library for 2D raycasting. It supports collision detection for custom polygons, lines, rectangles, and spheres.
 
+![2D Raycasting](docs\main.gif)
+
 ## Features
 
 - 2D raycasting with SFML
