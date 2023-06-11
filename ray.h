@@ -22,6 +22,9 @@ public:
 
     void draw(sf::RenderWindow& window) const;
 
+    Intersection castLine(const Line& line);
+    Intersection* closestIntersection(std::vector<Intersection>& intersections); 
+
     Intersection castBoundary(const Boundary& boundary);
     void castBoundary(const std::vector<Boundary>& boundaries);
 
