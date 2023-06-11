@@ -2,17 +2,15 @@
 
 #include "boundary.h"
 #include "ray.h"
+#include "emitter.h"
 
+#include <cmath>
 
+const int RAY_COUNT = 100;
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+void create_boundaries(std::vector<Boundary>& boundaries){
 
-    std::vector<Boundary> boundaries;
-    
     // Create random line boundaries
-
     int line_count = 3;
     for (int i = 0; i < line_count; i++)
     {
@@ -35,8 +33,17 @@ int main()
 
     // Create a rectangle
     boundaries.push_back(Boundary(100, 100, sf::Vector2f(800, 800), 45));
+
+}
+
+int main()
+{
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "2D Ray-Casting");
+
+    std::vector<Boundary> boundaries;
+    create_boundaries(boundaries);
     
-    Ray ray(sf::Vector2f(100, 450), sf::Vector2f(1, 0));
+    Emitter emitter = Emitter(RAY_COUNT, sf::Vector2f(500, 500));
 
     while (window.isOpen())
     {
@@ -48,20 +55,22 @@ int main()
 
             if (event.type == sf::Event::MouseMoved)
             {
-                ray.intersection.hit = false;  
-                ray.lookAt(event.mouseMove.x, event.mouseMove.y);  
+                emitter.setPos(sf::Vector2f(event.mouseMove.x, event.mouseMove.y));
             }
         }
 
-        window.clear(sf::Color::Black);
+        // Update
 
-        ray.castBoundary(boundaries);
+        emitter.castBoundary(boundaries);
+
+        // Draw
+
+        window.clear(sf::Color::Black);
 
         for (auto& boundary : boundaries){
             boundary.draw(window);
         }
-
-        ray.draw(window);
+        emitter.draw(window);
 
         window.display();
     }

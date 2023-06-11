@@ -12,13 +12,6 @@ Ray::Ray(sf::Vector2f pos, sf::Vector2f direction)
 
 void Ray::draw(sf::RenderWindow& window) const
 {
-    sf::Vertex line[] =
-    {
-        sf::Vertex(pos),
-        sf::Vertex(pos + direction)
-    };
-
-    window.draw(line, 2, sf::Lines);
 
     if (intersection.hit == true)
     {
@@ -27,7 +20,22 @@ void Ray::draw(sf::RenderWindow& window) const
         circle.setPosition(intersection.pt);
         circle.setFillColor(sf::Color::Red);
 
+        sf::Vertex line[] =
+        {
+            sf::Vertex(pos),
+            sf::Vertex(intersection.pt)
+        };
+
+        window.draw(line, 2, sf::Lines);
         window.draw(circle);
+    } else {
+        sf::Vertex line[] =
+        {
+            sf::Vertex(pos),
+            sf::Vertex(pos + direction * 1000.f)
+        };
+
+        window.draw(line, 2, sf::Lines);
     }
 }
 

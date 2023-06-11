@@ -8,7 +8,7 @@ SFML_INCLUDE_DIR= C:\SFML-2.5.1\include
 SFML_STATIC_LIBS=-lsfml-graphics-s -lsfml-window-s -lsfml-system-s -lsfml-audio -lopengl32 -lfreetype -lwinmm -lgdi32 -mwindows -lsfml-main
 CXXFLAGS=$(DEBUG) $(OPT) $(WARN) -I$(SFML_INCLUDE_DIR) -DSFML_STATIC
 LDFLAGS=-L$(SFML_STATIC_LIB_DIR) $(SFML_STATIC_LIBS)
-OBJS= main.o boundary.o ray.o
+OBJS= main.o boundary.o ray.o emitter.o
 
 
 all: $(OBJS)
@@ -28,4 +28,7 @@ boundary.o: boundary.cpp
 
 ray.o: ray.cpp
 	$(CXX) -c $(CXXFLAGS) ray.cpp -o ray.o
+
+emitter.o: emitter.cpp
+	$(CXX) -c $(CXXFLAGS) emitter.cpp -o emitter.o
 
