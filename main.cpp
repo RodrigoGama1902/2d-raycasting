@@ -32,6 +32,9 @@ int main()
 
     // Create a circle
     boundaries.push_back(Boundary(100, 100, sf::Vector2f(500, 500)));
+
+    // Create a rectangle
+    boundaries.push_back(Boundary(100, 100, sf::Vector2f(800, 800), 45));
     
     Ray ray(sf::Vector2f(100, 450), sf::Vector2f(1, 0));
 

@@ -50,6 +50,32 @@ Boundary::Boundary(int segments, float radius, sf::Vector2f pos)
     }
 }
 
+Boundary::Boundary(float sizeX, float sizeY, sf::Vector2f pos, float rotation){
+
+    sf::Vector2f p1(-sizeX / 2, -sizeY / 2);
+    sf::Vector2f p2(sizeX / 2, -sizeY / 2);
+    sf::Vector2f p3(sizeX / 2, sizeY / 2);
+    sf::Vector2f p4(-sizeX / 2, sizeY / 2);
+
+    sf::Transform transform;
+    transform.rotate(rotation);
+
+    p1 = transform.transformPoint(p1);
+    p2 = transform.transformPoint(p2);
+    p3 = transform.transformPoint(p3);
+    p4 = transform.transformPoint(p4);
+
+    p1 += pos;
+    p2 += pos;
+    p3 += pos;
+    p4 += pos;
+
+    lines.push_back({p1, p2});
+    lines.push_back({p2, p3});
+    lines.push_back({p3, p4});
+    lines.push_back({p4, p1});
+
+}
 
 void Boundary::draw(sf::RenderWindow& window) const
 {
