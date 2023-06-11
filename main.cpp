@@ -10,10 +10,11 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 
     std::vector<Boundary> boundaries;
-    int wall_count = 5;
+    
+    // Create random line boundaries
 
-    // create random boundaries
-    for (int i = 0; i < wall_count; i++)
+    int line_count = 3;
+    for (int i = 0; i < line_count; i++)
     {
         sf::Vector2f p1(rand() % 1000, rand() % 1000);
         sf::Vector2f p2(rand() % 1000, rand() % 1000);
@@ -21,13 +22,16 @@ int main()
         boundaries.push_back(Boundary(p1, p2));
     }
 
-    std::vector<sf::Vector2f> cubePoints;
-    cubePoints.push_back(sf::Vector2f(100, 100));
-    cubePoints.push_back(sf::Vector2f(200, 100));
-    cubePoints.push_back(sf::Vector2f(200, 200));
-    cubePoints.push_back(sf::Vector2f(100, 200));
+    // Create a polygon boundary
+    std::vector<sf::Vector2f> polygonPoints;
+    polygonPoints.push_back(sf::Vector2f(100, 100));
+    polygonPoints.push_back(sf::Vector2f(200, 100));
+    polygonPoints.push_back(sf::Vector2f(200, 200));
+    polygonPoints.push_back(sf::Vector2f(100, 200));
+    boundaries.push_back(Boundary(polygonPoints));
 
-    boundaries.push_back(Boundary(cubePoints));
+    // Create a circle
+    boundaries.push_back(Boundary(100, 100, sf::Vector2f(500, 500)));
     
     Ray ray(sf::Vector2f(100, 450), sf::Vector2f(1, 0));
 

@@ -1,4 +1,5 @@
 #include "boundary.h"
+#include <cmath>
 
 Boundary::Boundary(sf::Vector2f p1, sf::Vector2f p2)
 {   
@@ -27,6 +28,28 @@ Boundary::Boundary(std::vector<sf::Vector2f> points){
 
     lines.push_back(line);
 }
+
+Boundary::Boundary(int segments, float radius, sf::Vector2f pos)
+{
+    float angle = 0;
+    float angle_increment = 2 * M_PI / segments;
+
+    for (int i = 0; i < segments; i++)
+    {
+        Line line;
+
+        line.p1.x = pos.x + radius * cos(angle);
+        line.p1.y = pos.y + radius * sin(angle);
+
+        angle += angle_increment;
+
+        line.p2.x = pos.x + radius * cos(angle);
+        line.p2.y = pos.y + radius * sin(angle);
+
+        lines.push_back(line);
+    }
+}
+
 
 void Boundary::draw(sf::RenderWindow& window) const
 {
