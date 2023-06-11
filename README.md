@@ -22,4 +22,4 @@ This project is a simple C++ application that utilizes the SFML library for 2D r
 
 ## License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). Feel free to modify and distribute it according to the terms of the license.
+This project is licensed under the [MIT License](LICENSE). Feel free to modify and distribute it according to the terms of the license.
