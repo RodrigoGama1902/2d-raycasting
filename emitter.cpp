@@ -1,4 +1,6 @@
+#define _USE_MATH_DEFINES
 #include "emitter.h"
+#include <cmath>
 
 Emitter::Emitter(int rays, sf::Vector2f pos){
 
